@@ -1,17 +1,17 @@
 import './App.css';
 import { useState } from "react";
-import {OneTimePad} from './OneTimePad';
-import {Transposition} from './Transposition';
+import {OneTimePad,GenerateRandomKey} from './OneTimePad';
 
 function App() {
 
 const [plaintext, setPlaintext] = useState("");
 const [Key, setKey] = useState("");
-
+const isRandom =()=>{
+    setKey(GenerateRandomKey(plaintext))
+}
 function handleSubmit(event) {
   event.preventDefault();
 }
-
   return (
     <div className='container'>
       <div className="login-box">
@@ -22,7 +22,7 @@ function handleSubmit(event) {
               value={plaintext}
               onChange={(e) => setPlaintext(e.target.value)}
               required="" />
-            <label>Plaintext</label>
+            <label>Text</label>
           </div>
           <div className="user-box">
             <textarea
@@ -46,6 +46,13 @@ function handleSubmit(event) {
               <span></span>
               <span></span>
               Decryption
+            </button>
+            <button onClick={() => {isRandom()}}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Random Key
             </button>
           </div>
         </form>

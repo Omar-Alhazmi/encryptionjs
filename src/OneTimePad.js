@@ -7,11 +7,8 @@ export const OneTimePad = (plaintext, Key, type) => {
   let keyValidator = /^[0-9,]*$/;
   if (keyValidator.test(Key) === false) {
     throw Swal.fire({
-      title: `Please Enter a Valid number between 1-26`,
+      title: `key number between 0-29 an separate between the key values use ","`,
       icon: 'error',
-      preConfirm: () => {
-        window.location.reload();
-      },
       showCancelButton: false
     })
   }
@@ -25,9 +22,6 @@ export const OneTimePad = (plaintext, Key, type) => {
       throw Swal.fire({
         title: `Please Enter a Valid number between 1-26`,
         icon: 'error',
-        preConfirm: () => {
-          window.location.reload();
-        },
         showCancelButton: false
       })
     }
@@ -36,24 +30,20 @@ export const OneTimePad = (plaintext, Key, type) => {
   for (let i = 0; i < plaintextToLower.length; i++) {
     if (codeBock.indexOf(plaintextToLower[i]) === -1) {
       throw Swal.fire({
-        title: `key length must be at least equal to the plaintext
-        and to separate between the key values use ","`,
+        title: `Please Enter a Valid character a-Z and spaces `,
         icon: 'error',
         showCancelButton: false,
         showLoaderOnConfirm: true,
-        preConfirm: () => {
-          window.location.reload();
-        }
       })
       // Get the character index.
     } else {
       text[i] = codeBock.indexOf(plaintextToLower[i]);
     }
   }
+
   if (KeyValue.length < text.length) {
     throw Swal.fire({
-      title: `Please Enter a Valid character from a-Z or space
-       No special character or number is allowed `,
+      title: `Yuo need to add : ${text.length - KeyValue.length} mor key to the pad`,
       icon: 'error',
       showCancelButton: false
     })
@@ -87,4 +77,17 @@ export const OneTimePad = (plaintext, Key, type) => {
       showCancelButton: false
     })
   }
+}
+
+const  getRandomIntInclusive = (min, max) =>{
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+export const GenerateRandomKey = (plaintext) =>{
+  let randomKey = []
+  for( let i=1; i <= plaintext.length;i++){
+    randomKey.push(getRandomIntInclusive(1,26))
+  }
+  return randomKey
 }
