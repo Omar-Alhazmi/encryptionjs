@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from "react";
 import {OneTimePad} from './OneTimePad';
+import {Transposition} from './Transposition';
 
 function App() {
 
