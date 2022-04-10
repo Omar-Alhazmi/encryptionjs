@@ -20,8 +20,7 @@ body {
   border-radius: 10px;
 }
 .buttonContainer{
-  display: flex;
-  justify-content: space-around;
+  display: grid;
 }
 .login-box h2 {
   margin: 0 0 30px;
@@ -167,5 +166,12 @@ body {
   }
   50%,100% {
     bottom: 100%;
+  }
+}
+@media only screen and (min-width: 900px){
+  .buttonContainer {
+    display: flex;
+    justify-content: space-around;
+
   }
 }
